@@ -1,0 +1,19 @@
+bear type model
+This model is used to predict what type of bear the animal is in the photo provided. It is trained on an imagenet Resnet-18 model using image recognition learning.
+
+## The Algorithm
+The model trains off of many photos from 5 species of bear(including grizzly, black, polar, panda, and teddy bear). It looks for and patterns in each different species, and will validate that those are patterns that
+can be usec to detect the type of bear. It will do this for every photo in every catagory. you can test if it works properly by runniing an image in the test folder, and it should identify what type of bear it is.
+
+## Running this project
+
+1. Connect to your Jetson Nano via PUTTY.
+2. connect to vscode
+3. Ensure that you have the proper things installed. The Renet18.onnx and all others like that - the ones that say resnet18.onnx and the final_project2.py. Also, esure that you have the labels.txt file.
+4. Since using teh preflashed SD card, there sould be a docker container. This is accesable by implementing this code. Change directories into jetson-inference/python/training/classification. - use this code if your in the home.$ cd jetson-inference/python/training/classification
+5. Then run this code -$ ./docker/run.sh to get into the docker container
+6a. The run the following code: imagenet.py --model=$NET/resnet18.onnx --input_blob=input_0 --output_blob=output_0 --labels=$DATASET/labels.txt $DATASET/test/grizzly/grizzly.jpg grizzly.jpg
+6b. You should see The code run, and after a while you should get two errors. Ignore them, as they are irrelevant.
+6c. you should then be able to check vscode, and find the image named grizzly.jpg. the you should get the confidence that the model thinks it is a grizzly bear.
+
+https://youtu.be/tWAKfXtHFag
